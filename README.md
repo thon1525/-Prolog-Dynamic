@@ -50,3 +50,71 @@ list_favorite_foods :-
     forall(favorite_food(Person, Food),
            format('~w likes ~w~n', [Person, Food])).
 ```
+
+Key Concepts:
+Dynamic predicates: Facts are declared using :- dynamic(favorite_food/2) to allow runtime modification.
+
+- assertz/1: Adds a new fact dynamically.
+- retract/1: Removes an existing fact.
+- forall/2: Loops over all dynamic facts and prints them.
+  Usage
+  To run the project, follow these steps:
+
+Install SWI-Prolog or another compatible Prolog interpreter.
+Save the code in a file named favorite_food.pl.
+Load the Prolog file in your interpreter by running:
+
+```
+swipl
+?- [favorite_food].
+```
+
+Query the dynamic predicates using the following commands:
+Examples
+List all favorite foods:
+
+```
+?- list_favorite_foods.
+john likes pizza
+mary likes salad
+true.
+
+```
+
+Add a new favorite food:
+
+```
+
+?- list_favorite_foods.
+john likes pizza
+mary likes salad
+bob likes burger
+true.
+```
+
+Remove an existing favorite food
+
+```
+
+?- remove_favorite_food(john, pizza).
+true.
+
+?- list_favorite_foods.
+mary likes salad
+bob likes burger
+true.
+
+```
+
+Modify a favorite food:
+
+```
+?- modify_favorite_food(mary, salad, sushi).
+true.
+
+?- list_favorite_foods.
+mary likes sushi
+bob likes burger
+true.
+
+```
